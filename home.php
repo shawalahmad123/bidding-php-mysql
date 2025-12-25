@@ -48,7 +48,7 @@ $cid = isset($_GET['category_id']) ? $_GET['category_id'] : 0;
                         <div class="row">
                             <?php
                                 $where = "";
-                                if($cid > 0){
+                                if($cid > 0 && $cid != 'all'){
                                     $where  = " and category_id =$cid ";
                                 }
                                 $cat = $conn->query("SELECT * FROM products where unix_timestamp(bid_end_datetime) >= ".strtotime(date("Y-m-d H:i"))." $where order by name asc");

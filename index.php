@@ -1,7 +1,7 @@
+<?php include('admin/session.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
     <?php
-    session_start();
     include('admin/db_connect.php');
     ob_start();
         $query = $conn->query("SELECT * FROM system_settings limit 1")->fetch_array();

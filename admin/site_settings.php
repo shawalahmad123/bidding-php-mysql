@@ -1,3 +1,5 @@
+<?php include('./session.php'); ?>
+<?php include('./check_login.php'); ?>
 <?php
 include 'db_connect.php';
 $qry = $conn->query("SELECT * from system_settings limit 1");

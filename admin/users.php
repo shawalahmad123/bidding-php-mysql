@@ -1,6 +1,5 @@
-<?php 
-
-?>
+<?php include('./session.php'); ?>
+<?php include('./check_login.php'); ?>
 
 <div class="container-fluid">
 	

@@ -1,3 +1,5 @@
+<?php include('./session.php'); ?>
+<?php include('./check_login.php'); ?>
 <?php include 'db_connect.php' ?>
 <style>
    span.float-right.summary_icon {
