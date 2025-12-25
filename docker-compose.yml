@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8070:80" # host:container
+    volumes:
+      - ./:/var/www/html:cached
+      - ./admin/assets/uploads:/var/www/html/admin/assets/uploads
+    environment:
+      DB_HOST: db
+      DB_USER: bidding_user
+      DB_PASS: bidding_pass
+      DB_NAME: bidding_db
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:10.4
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: bidding_db
+      MYSQL_USER: bidding_user
+      MYSQL_PASSWORD: bidding_pass
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database/bidding_db.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    ports:
+      - "8071:3306"
+
+  # phpmyadmin:
+  #   image: phpmyadmin:latest
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8072:80"
+  #   environment:
+  #     PMA_HOST: db
+  #     PMA_USER: root
+  #     PMA_PASSWORD: rootpassword
+  #   depends_on:
+  #     - db
+
+volumes:
+  db_data:
